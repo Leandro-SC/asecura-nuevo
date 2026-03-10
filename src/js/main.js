@@ -82,81 +82,75 @@ function initMobileMenu() {
  */
 function initHeroSlider() {
     const slider = document.querySelector('.hero-slider');
-    
     if (!slider) return;
-    
-    const slides = slider.querySelectorAll('.hero-slider__slide');
-    const dots = slider.querySelectorAll('.hero-slider__dot');
+
+    const slides = Array.from(slider.querySelectorAll('.hero-slider__slide'));
+    const dots = Array.from(slider.querySelectorAll('.hero-slider__dot'));
+
+    if (!slides.length) return;
+
     let currentSlide = 0;
-    let autoSlideInterval;
-    
-    if (slides.length === 0) return;
-    
-    // Set first slide as active
-    slides[0].classList.add('is-active');
-    if (dots.length > 0) {
-        dots[0].classList.add('is-active');
-    }
-    
+    let autoSlideInterval = null;
+    const delay = 5000;
+
     function goToSlide(index) {
-        // Remove active class from all
-        slides.forEach(function(slide) {
-            slide.classList.remove('is-active');
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('is-active', i === index);
         });
-        dots.forEach(function(dot) {
-            dot.classList.remove('is-active');
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('is-active', i === index);
         });
-        
-        // Add active class to current
-        slides[index].classList.add('is-active');
-        if (dots.length > 0) {
-            dots[index].classList.add('is-active');
-        }
-        
+
         currentSlide = index;
     }
-    
+
     function nextSlide() {
         const next = (currentSlide + 1) % slides.length;
         goToSlide(next);
     }
-    
+
+    function prevSlide() {
+        const prev = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(prev);
+    }
+
     function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 6000);
+        stopAutoSlide();
+        autoSlideInterval = setInterval(nextSlide, delay);
     }
-    
+
     function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
     }
-    
-    // Dot navigation
-    dots.forEach(function(dot, index) {
-        dot.addEventListener('click', function() {
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function () {
             goToSlide(index);
-            stopAutoSlide();
             startAutoSlide();
         });
     });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
+
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowLeft') {
-            const prev = (currentSlide - 1 + slides.length) % slides.length;
-            goToSlide(prev);
-            stopAutoSlide();
+            prevSlide();
             startAutoSlide();
         } else if (e.key === 'ArrowRight') {
             nextSlide();
-            stopAutoSlide();
             startAutoSlide();
         }
     });
-    
-    // Pause on hover
+
     slider.addEventListener('mouseenter', stopAutoSlide);
     slider.addEventListener('mouseleave', startAutoSlide);
-    
-    // Start auto slide
+
+    slider.addEventListener('touchstart', stopAutoSlide, { passive: true });
+    slider.addEventListener('touchend', startAutoSlide);
+
+    goToSlide(0);
     startAutoSlide();
 }
 
@@ -350,6 +344,123 @@ function initSmoothScroll() {
             }
         });
     });
+}
+
+
+/**
+ * ASEGURA - Contact Form to Google Sheets
+ */
+
+document.addEventListener("DOMContentLoaded", function () {
+    initContactForm();
+});
+
+function initContactForm() {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+
+    const submitBtn = document.getElementById("contactSubmitBtn");
+    const successBox = document.getElementById("formSuccess");
+
+    // Reemplaza con tu URL del Web App desplegado
+    const GOOGLE_SCRIPT_URL = "PEGAR_AQUI_TU_WEBAPP_URL";
+
+    // Time trap
+    form.dataset.formTs = String(Date.now());
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        const payload = {
+            nombre: (formData.get("nombre") || "").toString().trim(),
+            empresa: (formData.get("empresa") || "").toString().trim(),
+            celular: (formData.get("celular") || "").toString().trim(),
+            email: (formData.get("email") || "").toString().trim(),
+            servicio: (formData.get("servicio") || "").toString().trim(),
+            mensaje: (formData.get("mensaje") || "").toString().trim(),
+            website: (formData.get("website") || "").toString().trim(), // honeypot
+            form_ts: Number(form.dataset.formTs || Date.now()),
+            ua: navigator.userAgent,
+            tz: Intl.DateTimeFormat().resolvedOptions().timeZone || "",
+            page: window.location.href
+        };
+
+        // Validación básica front
+        if (!payload.nombre || !payload.empresa || !payload.celular || !payload.email || !payload.servicio) {
+            Swal.fire({
+                icon: "warning",
+                title: "Complete los campos obligatorios",
+                text: "Por favor revise el formulario antes de enviarlo."
+            });
+            return;
+        }
+
+        if (!isValidEmail(payload.email)) {
+            Swal.fire({
+                icon: "warning",
+                title: "Correo no válido",
+                text: "Ingrese un correo electrónico correcto."
+            });
+            return;
+        }
+
+        const originalBtnText = submitBtn ? submitBtn.innerHTML : "";
+
+        try {
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = "Enviando...";
+            }
+
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.text();
+
+            if (result === "OK") {
+                form.reset();
+                form.dataset.formTs = String(Date.now());
+
+                if (successBox) {
+                    successBox.classList.add("is-visible");
+                }
+
+                await Swal.fire({
+                    icon: "success",
+                    title: "¡Mensaje enviado!",
+                    text: "Gracias por contactarnos. Nuestro equipo se comunicará con usted dentro de las 24 horas hábiles.",
+                    confirmButtonText: "Entendido"
+                });
+            } else {
+                throw new Error(result || "Error al enviar");
+            }
+        } catch (error) {
+            console.error("Error enviando formulario:", error);
+
+            Swal.fire({
+                icon: "error",
+                title: "No se pudo enviar el mensaje",
+                text: "Ocurrió un problema al registrar su solicitud. Intente nuevamente en unos minutos."
+            });
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        }
+    });
+}
+
+function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
 }
 
 /**

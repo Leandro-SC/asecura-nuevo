@@ -1,89 +1,197 @@
 /* ASEGURA - Contact Page */
 
+// =========================
 // Contact Hero
+// =========================
 .contact-hero {
-    height: 400px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $azul-marino;
-    
-    @media (max-width: $breakpoint-mobile) {
-        height: 350px;
+    overflow: hidden;
+    text-align: center;
+    min-height: 320px;
+    padding: 110px 20px 72px;
+    background:
+        linear-gradient(135deg, rgba($azul-marino, 0.96), rgba($azul-secundario, 0.9)),
+        radial-gradient(circle at 20% 25%, rgba($rojo-corporativo, 0.16), transparent 28%);
+
+    @media (min-width: $breakpoint-mobile) {
+        min-height: 360px;
+        padding: 125px 24px 82px;
     }
-    
+
+    @media (min-width: $breakpoint-tablet) {
+        min-height: 480px;
+        padding: 145px 24px 95px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+        min-height: 600px;
+        padding: 165px 24px 110px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba($blanco, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba($blanco, 0.035) 1px, transparent 1px);
+        background-size: 54px 54px;
+        opacity: 0.45;
+        pointer-events: none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        right: -100px;
+        bottom: -120px;
+        background: radial-gradient(circle, rgba($rojo-corporativo, 0.22), transparent 65%);
+        filter: blur(22px);
+        pointer-events: none;
+        animation: contactHeroFloat 12s ease-in-out infinite alternate;
+    }
+
+    .hero__background {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            transform: scale(1.04);
+            animation: contactHeroZoom 16s ease-in-out infinite alternate;
+        }
+    }
+
+    .hero__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    .hero__overlay--dark {
+        background:
+            linear-gradient(
+                90deg,
+                rgba($azul-marino, 0.78) 0%,
+                rgba($azul-marino, 0.46) 40%,
+                rgba($azul-marino, 0.22) 100%
+            ),
+            linear-gradient(
+                180deg,
+                rgba($azul-marino, 0.16) 0%,
+                rgba($azul-marino, 0.38) 68%,
+                rgba($azul-marino, 0.62) 100%
+            );
+    }
+
     &__content {
         position: relative;
         z-index: 2;
-        text-align: center;
         color: $blanco;
-        padding: 0 20px;
-        max-width: 800px;
+        max-width: 860px;
+        margin: 0 auto;
+        animation: contactHeroFadeUp 1s ease-out both;
     }
-    
+
     &__title {
         color: $blanco;
-        margin-bottom: $spacing-sm;
+        margin: 0 0 $spacing-sm;
+        font-size: clamp(2.1rem, 6vw, 4.4rem);
+        line-height: 1.03;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+        animation: contactHeroTitleUp 1.1s ease-out both;
     }
-    
+
     &__subtitle {
-        font-size: 20px;
-        opacity: 0.9;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        opacity: 0.92;
+        line-height: 1.7;
+        max-width: 680px;
+        margin: 0 auto;
+        animation: contactHeroSubtitleUp 1.25s ease-out both;
     }
 }
 
+// =========================
 // Contact Info Section
+// =========================
 .contact-info {
+    position: relative;
+    margin-top: -70px;
+    z-index: 3;
+
+    @media (max-width: $breakpoint-tablet) {
+        margin-top: -40px;
+    }
+
     &__grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1fr;
         gap: $spacing-md;
-        
-        @media (max-width: $breakpoint-desktop) {
+
+        @media (min-width: $breakpoint-tablet) {
             grid-template-columns: repeat(2, 1fr);
         }
-        
-        @media (max-width: $breakpoint-mobile) {
-            grid-template-columns: 1fr;
+
+        @media (min-width: $breakpoint-desktop) {
+            grid-template-columns: repeat(4, 1fr);
         }
     }
-    
+
     &__card {
-        background-color: $blanco;
+        background: rgba($blanco, 0.96);
+        backdrop-filter: blur(10px);
         padding: $spacing-lg;
-        border-radius: $border-radius-md;
+        border-radius: 20px;
         text-align: center;
-        box-shadow: $shadow-md;
-        transition: all $transition-normal;
-        
+        box-shadow: 0 16px 40px rgba(16, 24, 40, 0.12);
+        border: 1px solid rgba($azul-marino, 0.06);
+        transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+
         &:hover {
             transform: translateY(-8px);
-            box-shadow: $shadow-xl;
+            box-shadow: 0 22px 48px rgba(16, 24, 40, 0.16);
+            border-color: rgba($rojo-corporativo, 0.18);
         }
-        
+
         svg {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             fill: $rojo-corporativo;
             margin-bottom: $spacing-sm;
         }
-        
+
         h4 {
             font-size: $font-size-h5;
             margin-bottom: $spacing-xs;
+            color: $azul-marino;
         }
-        
+
         p {
             font-size: 16px;
             color: $gris-texto;
             margin: 0;
+            line-height: 1.6;
         }
-        
+
         a {
             color: $azul-marino;
             font-weight: $font-weight-semibold;
-            
+            text-decoration: none;
+            transition: color .25s ease;
+
             &:hover {
                 color: $rojo-corporativo;
             }
@@ -91,81 +199,107 @@
     }
 }
 
+// =========================
 // Contact Form Section
+// =========================
 .contact-form {
-    background-color: $gris-fondo;
-    
+    background:
+        linear-gradient(180deg, $gris-fondo 0%, lighten($gris-fondo, 2%) 100%);
+
     &__content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: $spacing-xl;
-        
-        @media (max-width: $breakpoint-tablet) {
-            grid-template-columns: 1fr;
-            gap: $spacing-lg;
+        grid-template-columns: 1fr;
+        gap: $spacing-lg;
+        align-items: start;
+
+        @media (min-width: $breakpoint-tablet) {
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+            gap: $spacing-xl;
         }
     }
-    
+
     &__info {
         h3 {
             margin-bottom: $spacing-sm;
+            color: $azul-marino;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
         }
-        
+
         p {
             font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: $spacing-lg;
+            line-height: 1.8;
+            margin-bottom: $spacing-md;
+            color: $gris-texto;
+        }
+
+        .info-card {
+            margin-top: 30px !important;
+            background: $blanco;
+            border-radius: 18px;
+            padding: $spacing-md;
+            box-shadow: $shadow-md;
+            border: 1px solid rgba($azul-marino, 0.06);
         }
     }
-    
+
     &__form {
-        background-color: $blanco;
+        background: $blanco;
         padding: $spacing-lg;
-        border-radius: $border-radius-md;
-        box-shadow: $shadow-lg;
+        border-radius: 24px;
+        box-shadow: 0 20px 46px rgba(16, 24, 40, 0.1);
+        border: 1px solid rgba($azul-marino, 0.06);
+
+        @media (min-width: $breakpoint-tablet) {
+            padding: calc(#{$spacing-lg} + 8px);
+        }
     }
 }
 
+// =========================
+// Form Group
+// =========================
 .form-group {
     margin-bottom: $spacing-md;
-    
+
     label {
         display: block;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: $font-weight-semibold;
         color: $azul-marino;
         margin-bottom: 8px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.08em;
     }
-    
+
     input,
     select,
     textarea {
         width: 100%;
-        padding: 14px 16px;
+        padding: 15px 16px;
         font-size: 16px;
-        border: 2px solid rgba($gris-texto, 0.2);
-        border-radius: $border-radius-md;
+        border: 1.5px solid rgba($gris-texto, 0.18);
+        border-radius: 14px;
         background-color: $blanco;
-        transition: all $transition-normal;
-        
+        transition: border-color .25s ease, box-shadow .25s ease, transform .2s ease;
+
         &:focus {
             outline: none;
             border-color: $rojo-corporativo;
-            box-shadow: 0 0 0 3px rgba($rojo-corporativo, 0.1);
+            box-shadow: 0 0 0 4px rgba($rojo-corporativo, 0.08);
         }
-        
+
         &::placeholder {
             color: rgba($gris-texto, 0.5);
         }
     }
-    
+
     textarea {
         resize: vertical;
-        min-height: 120px;
+        min-height: 130px;
     }
-    
+
     select {
         cursor: pointer;
         appearance: none;
@@ -176,126 +310,238 @@
     }
 }
 
+// =========================
 // Map Section
+// =========================
 .map-section {
     &__content {
-        border-radius: $border-radius-lg;
+        border-radius: 24px;
         overflow: hidden;
-        box-shadow: $shadow-lg;
-        
+        box-shadow: 0 18px 40px rgba(16, 24, 40, 0.12);
+        border: 1px solid rgba($azul-marino, 0.06);
+
         iframe {
             width: 100%;
-            height: 450px;
+            height: 460px;
             border: none;
-            
+            display: block;
+
             @media (max-width: $breakpoint-mobile) {
-                height: 350px;
+                height: 340px;
             }
         }
     }
 }
 
-// Coverage Map
-.coverage-section {
-    background-color: $azul-marino;
-    color: $blanco;
-    text-align: center;
-    
-    &__title {
-        color: $blanco;
-        margin-bottom: $spacing-lg;
-    }
-    
-    &__map {
-        position: relative;
-        max-width: 600px;
-        margin: 0 auto;
-        
-        svg {
-            width: 100%;
-            height: auto;
-            fill: rgba($blanco, 0.2);
-        }
-    }
-    
-    &__points {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    
-    &__point {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        background-color: $rojo-corporativo;
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-        
-        &::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            background-color: rgba($rojo-corporativo, 0.3);
-            border-radius: 50%;
-            animation: ping 2s infinite;
-        }
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 0.8;
-    }
-}
-
-@keyframes ping {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
-    75%, 100% {
-        transform: translate(-50%, -50%) scale(2);
-        opacity: 0;
-    }
-}
-
+// =========================
 // Success Message
+// =========================
 .form-success {
     display: none;
     text-align: center;
     padding: $spacing-lg;
-    
+
     &.is-visible {
         display: block;
     }
-    
+
     svg {
         width: 64px;
         height: 64px;
         fill: $rojo-corporativo;
         margin-bottom: $spacing-md;
     }
-    
+
     h4 {
         font-size: $font-size-h3;
         margin-bottom: $spacing-sm;
+        color: $azul-marino;
     }
-    
+
     p {
         font-size: 16px;
         color: $gris-texto;
+        line-height: 1.7;
     }
 }
 
+// =========================
+// Keyframes
+// =========================
+@keyframes contactHeroFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-20px, 15px) scale(1.05);
+    }
+    100% {
+        transform: translate(10px, -10px) scale(1);
+    }
+}
+
+@keyframes contactHeroZoom {
+    0% {
+        transform: scale(1.04) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: scale(1.1) translate3d(1%, -1%, 0);
+    }
+}
+
+@keyframes contactHeroFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contactHeroTitleUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contactHeroSubtitleUp {
+    0% {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    100% {
+        opacity: 0.92;
+        transform: translateY(0);
+    }
+}
+
+// =========================
+// Map Section
+// =========================
+.map-section {
+    background: linear-gradient(180deg, $blanco 0%, lighten($gris-fondo, 2%) 100%);
+
+    &__wrapper {
+        position: relative;
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-lg;
+        align-items: start;
+
+        @media (min-width: $breakpoint-tablet) {
+            grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+            gap: $spacing-xl;
+        }
+    }
+
+    &__content {
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgba(16, 24, 40, 0.12);
+        border: 1px solid rgba($azul-marino, 0.06);
+        background: $blanco;
+
+        iframe {
+            width: 100%;
+            height: 460px;
+            border: none;
+            display: block;
+
+            @media (max-width: $breakpoint-mobile) {
+                height: 340px;
+            }
+        }
+    }
+
+    &__card {
+        background: $blanco;
+        border-radius: 24px;
+        padding: $spacing-lg;
+        box-shadow: 0 20px 46px rgba(16, 24, 40, 0.1);
+        border: 1px solid rgba($azul-marino, 0.06);
+
+        @media (min-width: $breakpoint-tablet) {
+            position: sticky;
+            top: 110px;
+        }
+    }
+
+    &__eyebrow {
+        display: inline-block;
+        margin-bottom: $spacing-sm;
+        font-size: 13px;
+        font-weight: $font-weight-semibold;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $rojo-corporativo;
+    }
+
+    &__card-title {
+        margin: 0 0 $spacing-sm;
+        color: $azul-marino;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+    }
+
+    &__card-text {
+        margin: 0 0 $spacing-md;
+        color: $gris-texto;
+        line-height: 1.75;
+        font-size: 16px;
+    }
+
+    &__details {
+        margin: 0 0 $spacing-md;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 14px;
+
+        li {
+            display: grid;
+            gap: 4px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba($azul-marino, 0.08);
+
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+        }
+
+        strong {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: $azul-marino;
+        }
+
+        span {
+            color: $gris-texto;
+            line-height: 1.6;
+        }
+    }
+
+    &__actions {
+        margin-top: $spacing-md;
+    }
+}
+
+.form-group--hidden {
+    position: absolute !important;
+    left: -9999px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+.contact-form__submit {
+    width: 100%;
+}
