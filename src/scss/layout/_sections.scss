@@ -1,0 +1,232 @@
+/* ASEGURA - Sections */
+
+.section {
+    padding: $section-spacing-desktop 0;
+    
+    @media (max-width: $breakpoint-desktop) {
+        padding: $section-spacing-tablet 0;
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+        padding: $section-spacing-mobile 0;
+    }
+    
+    &--dark {
+        background-color: $azul-marino;
+        color: $blanco;
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: $blanco;
+        }
+    }
+    
+    &--gray {
+        background-color: $gris-fondo;
+    }
+    
+    &--white {
+        background-color: $blanco;
+    }
+    
+    &--red {
+        background-color: $rojo-corporativo;
+        color: $blanco;
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: $blanco;
+        }
+    }
+    
+    &--no-padding {
+        padding: 0;
+    }
+    
+    &--small {
+        padding: $spacing-xl 0;
+        
+        @media (max-width: $breakpoint-mobile) {
+            padding: $spacing-lg 0;
+        }
+    }
+}
+
+// Hero Section
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $azul-marino;
+    overflow: hidden;
+    
+    &--small {
+        min-height: 300px;
+        
+        @media (max-width: $breakpoint-mobile) {
+            min-height: 250px;
+        }
+    }
+    
+    &--medium {
+        min-height: 60vh;
+        
+        @media (max-width: $breakpoint-mobile) {
+            min-height: 50vh;
+        }
+    }
+    
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($azul-marino, 0.7);
+        z-index: 1;
+        
+        &--dark {
+            background-color: rgba(0, 0, 0, 0.45);
+        }
+        
+        &--light {
+            background-color: rgba($azul-marino, 0.3);
+        }
+    }
+    
+    &__content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 $container-padding;
+        text-align: center;
+        color: $blanco;
+    }
+    
+    &__subtitle {
+        font-size: 20px;
+        font-weight: $font-weight-regular;
+        margin-bottom: $spacing-lg;
+        opacity: 0.9;
+        
+        @media (max-width: $breakpoint-tablet) {
+            font-size: 18px;
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 16px;
+        }
+    }
+    
+    &__buttons {
+        display: flex;
+        gap: $spacing-sm;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+// Section Header
+.section-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto $spacing-xl;
+    
+    @media (max-width: $breakpoint-mobile) {
+        margin-bottom: $spacing-lg;
+    }
+    
+    &__title {
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__subtitle {
+        font-size: 18px;
+        color: $gris-texto;
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 16px;
+        }
+    }
+    
+    &--left {
+        text-align: left;
+        margin-left: 0;
+    }
+    
+    &--right {
+        text-align: right;
+        margin-right: 0;
+    }
+}
+
+// Section CTA
+.section-cta {
+    background-color: $azul-marino;
+    color: $blanco;
+    text-align: center;
+    padding: $spacing-xxl 0;
+    
+    @media (max-width: $breakpoint-mobile) {
+        padding: $spacing-xl 0;
+    }
+    
+    &__title {
+        color: $blanco;
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__text {
+        font-size: 20px;
+        opacity: 0.9;
+        margin-bottom: $spacing-lg;
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 16px;
+        }
+    }
+}
+
+// Divider
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: rgba($gris-texto, 0.2);
+    margin: $spacing-lg 0;
+    
+    &--light {
+        background-color: rgba($blanco, 0.2);
+    }
+}
+
+// Background patterns
+.bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    background-image: 
+        radial-gradient(circle at 25% 25%, currentColor 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, currentColor 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+

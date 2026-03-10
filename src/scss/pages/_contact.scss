@@ -1,0 +1,301 @@
+/* ASEGURA - Contact Page */
+
+// Contact Hero
+.contact-hero {
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $azul-marino;
+    
+    @media (max-width: $breakpoint-mobile) {
+        height: 350px;
+    }
+    
+    &__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: $blanco;
+        padding: 0 20px;
+        max-width: 800px;
+    }
+    
+    &__title {
+        color: $blanco;
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__subtitle {
+        font-size: 20px;
+        opacity: 0.9;
+    }
+}
+
+// Contact Info Section
+.contact-info {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-desktop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    &__card {
+        background-color: $blanco;
+        padding: $spacing-lg;
+        border-radius: $border-radius-md;
+        text-align: center;
+        box-shadow: $shadow-md;
+        transition: all $transition-normal;
+        
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: $shadow-xl;
+        }
+        
+        svg {
+            width: 40px;
+            height: 40px;
+            fill: $rojo-corporativo;
+            margin-bottom: $spacing-sm;
+        }
+        
+        h4 {
+            font-size: $font-size-h5;
+            margin-bottom: $spacing-xs;
+        }
+        
+        p {
+            font-size: 16px;
+            color: $gris-texto;
+            margin: 0;
+        }
+        
+        a {
+            color: $azul-marino;
+            font-weight: $font-weight-semibold;
+            
+            &:hover {
+                color: $rojo-corporativo;
+            }
+        }
+    }
+}
+
+// Contact Form Section
+.contact-form {
+    background-color: $gris-fondo;
+    
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-xl;
+        
+        @media (max-width: $breakpoint-tablet) {
+            grid-template-columns: 1fr;
+            gap: $spacing-lg;
+        }
+    }
+    
+    &__info {
+        h3 {
+            margin-bottom: $spacing-sm;
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: $spacing-lg;
+        }
+    }
+    
+    &__form {
+        background-color: $blanco;
+        padding: $spacing-lg;
+        border-radius: $border-radius-md;
+        box-shadow: $shadow-lg;
+    }
+}
+
+.form-group {
+    margin-bottom: $spacing-md;
+    
+    label {
+        display: block;
+        font-size: 14px;
+        font-weight: $font-weight-semibold;
+        color: $azul-marino;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 16px;
+        border: 2px solid rgba($gris-texto, 0.2);
+        border-radius: $border-radius-md;
+        background-color: $blanco;
+        transition: all $transition-normal;
+        
+        &:focus {
+            outline: none;
+            border-color: $rojo-corporativo;
+            box-shadow: 0 0 0 3px rgba($rojo-corporativo, 0.1);
+        }
+        
+        &::placeholder {
+            color: rgba($gris-texto, 0.5);
+        }
+    }
+    
+    textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+    
+    select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        padding-right: 40px;
+    }
+}
+
+// Map Section
+.map-section {
+    &__content {
+        border-radius: $border-radius-lg;
+        overflow: hidden;
+        box-shadow: $shadow-lg;
+        
+        iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            
+            @media (max-width: $breakpoint-mobile) {
+                height: 350px;
+            }
+        }
+    }
+}
+
+// Coverage Map
+.coverage-section {
+    background-color: $azul-marino;
+    color: $blanco;
+    text-align: center;
+    
+    &__title {
+        color: $blanco;
+        margin-bottom: $spacing-lg;
+    }
+    
+    &__map {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+        
+        svg {
+            width: 100%;
+            height: auto;
+            fill: rgba($blanco, 0.2);
+        }
+    }
+    
+    &__points {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    &__point {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: $rojo-corporativo;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background-color: rgba($rojo-corporativo, 0.3);
+            border-radius: 50%;
+            animation: ping 2s infinite;
+        }
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes ping {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    75%, 100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+// Success Message
+.form-success {
+    display: none;
+    text-align: center;
+    padding: $spacing-lg;
+    
+    &.is-visible {
+        display: block;
+    }
+    
+    svg {
+        width: 64px;
+        height: 64px;
+        fill: $rojo-corporativo;
+        margin-bottom: $spacing-md;
+    }
+    
+    h4 {
+        font-size: $font-size-h3;
+        margin-bottom: $spacing-sm;
+    }
+    
+    p {
+        font-size: 16px;
+        color: $gris-texto;
+    }
+}
+

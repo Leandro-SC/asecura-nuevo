@@ -1,0 +1,524 @@
+/* ASEGURA - Home Page */
+
+// Hero Slider
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    
+    &__slides {
+        display: flex;
+        width: 300%;
+        height: 100%;
+        transition: transform 0.7s ease;
+    }
+    
+    &__slide {
+        width: 33.333%;
+        height: 100%;
+        position: relative;
+    }
+    
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 1280px;
+        padding: 0 20px;
+        z-index: 10;
+        text-align: center;
+        color: $blanco;
+    }
+    
+    &__title {
+        font-size: 56px;
+        font-weight: $font-weight-bold;
+        margin-bottom: 24px;
+        color: $blanco;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease 0.3s;
+        
+        @media (max-width: $breakpoint-desktop) {
+            font-size: 44px;
+        }
+        
+        @media (max-width: $breakpoint-tablet) {
+            font-size: 36px;
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 28px;
+        }
+    }
+    
+    &__subtitle {
+        font-size: 20px;
+        line-height: 1.6;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        opacity: 0.9;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease 0.5s;
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 16px;
+        }
+    }
+    
+    &__buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease 0.7s;
+    }
+    
+    &__controls {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 12px;
+        z-index: 20;
+    }
+    
+    &__dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba($blanco, 0.5);
+        cursor: pointer;
+        transition: all $transition-normal;
+        
+        &.is-active,
+        &:hover {
+            background-color: $rojo-corporativo;
+            transform: scale(1.2);
+        }
+    }
+    
+    // Active state
+    &.is-active &__title,
+    &.is-active &__subtitle,
+    &.is-active &__buttons {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Problem Section
+.problem-section {
+    background-color: $gris-fondo;
+    
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-xl;
+        align-items: center;
+        
+        @media (max-width: $breakpoint-tablet) {
+            grid-template-columns: 1fr;
+            gap: $spacing-lg;
+        }
+    }
+    
+    &__text {
+        h2 {
+            margin-bottom: $spacing-md;
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: $spacing-md;
+        }
+    }
+    
+    &__highlight {
+        color: $rojo-corporativo;
+        font-weight: $font-weight-semibold;
+    }
+    
+    &__image {
+        border-radius: $border-radius-lg;
+        overflow: hidden;
+        box-shadow: $shadow-xl;
+        
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+// Features Section
+.features-section {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-desktop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Services Preview
+.services-preview {
+    background-color: $gris-fondo;
+    
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-desktop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Sectors Section
+.sectors-section {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-desktop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Benefits Section
+.benefits-section {
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-md;
+        max-width: 900px;
+        margin: 0 auto;
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        
+        svg {
+            width: 24px;
+            height: 24px;
+            fill: $rojo-corporativo;
+            flex-shrink: 0;
+        }
+        
+        span {
+            font-size: 18px;
+            font-weight: $font-weight-semibold;
+            color: $azul-marino;
+        }
+    }
+}
+
+// CTA Section
+.cta-section {
+    background-color: $azul-marino;
+    text-align: center;
+    
+    &__title {
+        color: $blanco;
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__text {
+        color: rgba($blanco, 0.9);
+        font-size: 20px;
+        margin-bottom: $spacing-lg;
+    }
+}
+
+.security-tech {
+    padding: 72px 0;
+    background: #f3f3f3;
+    overflow: hidden;
+}
+
+.security-tech__container {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+.security-tech__header {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.security-tech__title {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.08;
+    font-weight: 900;
+    color: #1f2732;
+    text-transform: uppercase;
+}
+
+.security-tech__subtitle {
+    margin: 12px 0 0;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.1;
+    font-weight: 900;
+    color: #d60000;
+    text-transform: uppercase;
+}
+
+.security-tech__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: center;
+}
+
+.security-tech__column {
+    display: grid;
+    gap: 14px;
+}
+
+.security-tech__item {
+    min-height: 74px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(90deg, #2c2d2f 0%, #333538 100%);
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    opacity: 0;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+}
+
+.security-tech__item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.14);
+    background: linear-gradient(90deg, #242527 0%, #2d2f32 100%);
+}
+
+.security-tech__item--left {
+    justify-content: space-between;
+    border-radius: 18px 18px 42px 18px;
+    animation-name: slideInLeftSoft;
+}
+
+.security-tech__item--right {
+    justify-content: flex-start;
+    border-radius: 18px 18px 18px 42px;
+    animation-name: slideInRightSoft;
+}
+
+.security-tech__item:nth-child(1) { animation-delay: 0.08s; }
+.security-tech__item:nth-child(2) { animation-delay: 0.16s; }
+.security-tech__item:nth-child(3) { animation-delay: 0.24s; }
+.security-tech__item:nth-child(4) { animation-delay: 0.32s; }
+.security-tech__item:nth-child(5) { animation-delay: 0.40s; }
+.security-tech__item:nth-child(6) { animation-delay: 0.48s; }
+
+.security-tech__item-text {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.security-tech__item-icon {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.security-tech__item-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: #e10600;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.security-tech__phone-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: phoneReveal 0.9s ease 0.2s forwards;
+}
+
+.security-tech__phone {
+    width: min(100%, 320px);
+    transform: translateY(8px);
+    animation: phoneFloat 4.5s ease-in-out infinite;
+}
+
+.security-tech__phone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.18));
+}
+
+@keyframes slideInLeftSoft {
+    from {
+        opacity: 0;
+        transform: translateX(-28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRightSoft {
+    from {
+        opacity: 0;
+        transform: translateX(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes phoneReveal {
+    from {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes phoneFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (min-width: 768px) {
+    .security-tech {
+        padding: 84px 0;
+    }
+
+    .security-tech__layout {
+        grid-template-columns: 1fr 280px 1fr;
+        gap: 22px;
+    }
+
+    .security-tech__phone {
+        width: 280px;
+    }
+
+    .security-tech__column {
+        gap: 12px;
+    }
+
+    .security-tech__item {
+        min-height: 74px;
+        padding: 16px 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .security-tech__layout {
+        grid-template-columns: minmax(300px, 1fr) 310px minmax(300px, 1fr);
+        gap: 26px;
+    }
+
+    .security-tech__phone {
+        width: 310px;
+    }
+
+    .security-tech__item {
+        min-height: 82px;
+        padding: 18px 24px;
+    }
+
+    .security-tech__item-text {
+        font-size: 1.15rem;
+    }
+
+    .security-tech__item-icon {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 767px) {
+    .security-tech__header {
+        margin-bottom: 28px;
+    }
+
+    .security-tech__phone {
+        width: min(100%, 250px);
+    }
+
+    .security-tech__column {
+        gap: 12px;
+    }
+
+    .security-tech__item {
+        min-height: 66px;
+        padding: 14px 18px;
+    }
+
+    .security-tech__item--left,
+    .security-tech__item--right {
+        border-radius: 16px;
+    }
+
+    .security-tech__item-icon {
+        width: 38px;
+        height: 38px;
+    }
+}

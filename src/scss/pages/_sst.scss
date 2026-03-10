@@ -1,0 +1,210 @@
+/* ASEGURA - SST Page */
+
+// SST Hero
+.sst-hero {
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $azul-marino;
+    
+    @media (max-width: $breakpoint-mobile) {
+        height: 350px;
+    }
+    
+    &__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: $blanco;
+        padding: 0 20px;
+        max-width: 800px;
+    }
+    
+    &__title {
+        color: $blanco;
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__subtitle {
+        font-size: 20px;
+        opacity: 0.9;
+    }
+}
+
+// Method Timeline
+.method-timeline {
+    background-color: $gris-fondo;
+    
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        
+        @media (max-width: $breakpoint-tablet) {
+            flex-direction: column;
+            gap: $spacing-md;
+        }
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba($azul-marino, 0.2);
+            
+            @media (max-width: $breakpoint-tablet) {
+                display: none;
+            }
+        }
+    }
+    
+    &__step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        
+        @media (max-width: $breakpoint-tablet) {
+            display: flex;
+            align-items: center;
+            gap: $spacing-sm;
+            text-align: left;
+        }
+    }
+    
+    &__number {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto $spacing-sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $blanco;
+        border: 3px solid $rojo-corporativo;
+        border-radius: 50%;
+        font-size: 24px;
+        font-weight: $font-weight-bold;
+        color: $rojo-corporativo;
+        
+        @media (max-width: $breakpoint-tablet) {
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+    }
+    
+    &__title {
+        font-size: $font-size-h4;
+        margin-bottom: $spacing-xs;
+    }
+    
+    &__text {
+        font-size: 14px;
+        color: $gris-texto;
+        max-width: 200px;
+        margin: 0 auto;
+        
+        @media (max-width: $breakpoint-tablet) {
+            max-width: none;
+            margin: 0;
+        }
+    }
+}
+
+// Emergency Management
+.emergency-management {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-desktop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    &__card {
+        background-color: $blanco;
+        padding: $spacing-lg;
+        border-radius: $border-radius-md;
+        text-align: center;
+        box-shadow: $shadow-md;
+        transition: all $transition-normal;
+        border: 1px solid transparent;
+        
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: $shadow-xl;
+            border-color: $rojo-corporativo;
+        }
+        
+        svg {
+            width: 48px;
+            height: 48px;
+            fill: $rojo-corporativo;
+            margin-bottom: $spacing-sm;
+        }
+        
+        h4 {
+            font-size: $font-size-h5;
+            margin-bottom: $spacing-xs;
+        }
+        
+        p {
+            font-size: 14px;
+            color: $gris-texto;
+            margin: 0;
+        }
+    }
+}
+
+// SST Benefits
+.sst-benefits {
+    background-color: $gris-fondo;
+    
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-md;
+        max-width: 900px;
+        margin: 0 auto;
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        background-color: $blanco;
+        padding: $spacing-md;
+        border-radius: $border-radius-md;
+        box-shadow: $shadow-sm;
+        
+        svg {
+            width: 28px;
+            height: 28px;
+            fill: $rojo-corporativo;
+            flex-shrink: 0;
+        }
+        
+        span {
+            font-size: 18px;
+            font-weight: $font-weight-semibold;
+            color: $azul-marino;
+        }
+    }
+}
+

@@ -1,0 +1,121 @@
+/* ASEGURA - Typography */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+body {
+    font-family: $font-family;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    color: $gris-texto;
+}
+
+h1, .h1 {
+    font-size: $font-size-h1;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    color: $azul-marino;
+    margin-bottom: $spacing-md;
+    
+    @media (max-width: $breakpoint-desktop) {
+        font-size: 44px;
+    }
+    
+    @media (max-width: $breakpoint-tablet) {
+        font-size: 36px;
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 28px;
+    }
+}
+
+h2, .h2 {
+    font-size: $font-size-h2;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    color: $azul-marino;
+    margin-bottom: $spacing-md;
+    
+    @media (max-width: $breakpoint-desktop) {
+        font-size: 34px;
+    }
+    
+    @media (max-width: $breakpoint-tablet) {
+        font-size: 28px;
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 24px;
+    }
+}
+
+h3, .h3 {
+    font-size: $font-size-h3;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    color: $azul-marino;
+    margin-bottom: $spacing-sm;
+    
+    @media (max-width: $breakpoint-tablet) {
+        font-size: 24px;
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 20px;
+    }
+}
+
+h4, .h4 {
+    font-size: $font-size-h4;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: $azul-marino;
+    margin-bottom: $spacing-xs;
+}
+
+h5, .h5 {
+    font-size: $font-size-h5;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: $azul-marino;
+}
+
+p {
+    margin-bottom: $spacing-sm;
+    line-height: $line-height-relaxed;
+}
+
+.text-highlight {
+    color: $rojo-corporativo;
+    font-weight: $font-weight-semibold;
+}
+
+.text-white {
+    color: $blanco;
+}
+
+.text-dark {
+    color: $azul-marino;
+}
+
+.text-muted {
+    color: $gris-texto;
+}
+
+.text-small {
+    font-size: $font-size-small;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.font-semibold {
+    font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+    font-weight: $font-weight-bold;
+}
+

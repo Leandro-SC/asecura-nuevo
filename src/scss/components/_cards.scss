@@ -1,0 +1,329 @@
+/* ASEGURA - Cards */
+
+.card {
+    background-color: $blanco;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+    transition: all $transition-normal;
+    
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: $shadow-xl;
+    }
+    
+    &__image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform $transition-slow;
+        
+        .card:hover & {
+            transform: scale(1.05);
+        }
+    }
+    
+    &__content {
+        padding: $spacing-md;
+    }
+    
+    &__icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($rojo-corporativo, 0.1);
+        border-radius: $border-radius-md;
+        margin-bottom: $spacing-sm;
+        
+        svg {
+            width: 32px;
+            height: 32px;
+            fill: $rojo-corporativo;
+        }
+    }
+    
+    &__title {
+        font-size: $font-size-h4;
+        margin-bottom: $spacing-xs;
+    }
+    
+    &__text {
+        color: $gris-texto;
+        font-size: 16px;
+        line-height: $line-height-normal;
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: $rojo-corporativo;
+        font-weight: $font-weight-semibold;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        
+        svg {
+            width: 16px;
+            height: 16px;
+            transition: transform $transition-fast;
+        }
+        
+        &:hover {
+            svg {
+                transform: translateX(4px);
+            }
+        }
+    }
+}
+
+// Card Grid
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+    
+    @media (max-width: $breakpoint-desktop) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: $breakpoint-tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-sm;
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// Feature Card
+.feature-card {
+    background-color: $blanco;
+    border-radius: $border-radius-md;
+    padding: $spacing-lg;
+    text-align: center;
+    transition: all $transition-normal;
+    border: 1px solid rgba($azul-marino, 0.1);
+    
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: $shadow-xl;
+        border-color: transparent;
+    }
+    
+    &__icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto $spacing-md;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, $azul-marino, $azul-secundario);
+        border-radius: 50%;
+        
+        svg {
+            width: 36px;
+            height: 36px;
+            fill: $blanco;
+        }
+    }
+    
+    &__title {
+        font-size: $font-size-h4;
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__text {
+        color: $gris-texto;
+        font-size: 16px;
+    }
+}
+
+// Service Card
+.service-card {
+    background-color: $blanco;
+    border-radius: $border-radius-md;
+    padding: $spacing-lg;
+    transition: all $transition-normal;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: $rojo-corporativo;
+        transform: scaleY(0);
+        transition: transform $transition-normal;
+    }
+    
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: $shadow-xl;
+        
+        &::before {
+            transform: scaleY(1);
+        }
+    }
+    
+    &__icon {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, $rojo-corporativo, darken($rojo-corporativo, 15%));
+        border-radius: $border-radius-md;
+        margin-bottom: $spacing-md;
+        
+        svg {
+            width: 36px;
+            height: 36px;
+            fill: $blanco;
+        }
+    }
+    
+    &__title {
+        font-size: $font-size-h4;
+        margin-bottom: $spacing-sm;
+        color: $azul-marino;
+    }
+    
+    &__text {
+        color: $gris-texto;
+        font-size: 16px;
+        line-height: $line-height-normal;
+        margin-bottom: $spacing-md;
+    }
+    
+    &__footer {
+        padding-top: $spacing-sm;
+        border-top: 1px solid rgba($gris-texto, 0.2);
+    }
+}
+
+// Sector Card
+.sector-card {
+    position: relative;
+    height: 300px;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    cursor: pointer;
+    
+    @media (max-width: $breakpoint-tablet) {
+        height: 250px;
+    }
+    
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform $transition-slow;
+    }
+    
+    &:hover &__image {
+        transform: scale(1.1);
+    }
+    
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba($azul-marino, 0.9), rgba($azul-marino, 0.3));
+        transition: background $transition-normal;
+    }
+    
+    &:hover &__overlay {
+        background: linear-gradient(to top, rgba($rojo-corporativo, 0.9), rgba($azul-marino, 0.5));
+    }
+    
+    &__content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: $spacing-lg;
+        color: $blanco;
+        z-index: 1;
+    }
+    
+    &__title {
+        font-size: $font-size-h3;
+        color: $blanco;
+        margin-bottom: $spacing-xs;
+    }
+    
+    &__text {
+        font-size: 14px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all $transition-normal;
+    }
+    
+    &:hover &__text {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Info Card
+.info-card {
+    background-color: $blanco;
+    border-radius: $border-radius-md;
+    padding: $spacing-md;
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+    box-shadow: $shadow-sm;
+    transition: all $transition-normal;
+    
+    &:hover {
+        box-shadow: $shadow-md;
+        transform: translateX(4px);
+    }
+    
+    &__icon {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba($rojo-corporativo, 0.1);
+        border-radius: $border-radius-sm;
+        
+        svg {
+            width: 20px;
+            height: 20px;
+            fill: $rojo-corporativo;
+        }
+    }
+    
+    &__content {
+        flex: 1;
+    }
+    
+    &__title {
+        font-size: 16px;
+        font-weight: $font-weight-semibold;
+        color: $azul-marino;
+        margin-bottom: 4px;
+    }
+    
+    &__text {
+        font-size: 14px;
+        color: $gris-texto;
+        margin: 0;
+    }
+}
+

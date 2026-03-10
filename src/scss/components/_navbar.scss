@@ -1,0 +1,258 @@
+/* ASEGURA - Navbar */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: $z-fixed;
+    background-color: $azul-marino;
+    transition: all $transition-normal;
+    
+    &--transparent {
+        background-color: transparent;
+        
+        @media (max-width: $breakpoint-tablet) {
+            background-color: $azul-marino;
+        }
+    }
+    
+    &--scrolled {
+        background-color: $azul-marino;
+        box-shadow: $shadow-md;
+    }
+    
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+        max-width: $container-max;
+        margin: 0 auto;
+        padding: 0 $container-padding;
+        
+        @media (max-width: $breakpoint-tablet) {
+            height: 70px;
+        }
+    }
+    
+    &__logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        
+        &-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $rojo-corporativo;
+            border-radius: $border-radius-sm;
+            
+            svg {
+                width: 28px;
+                height: 28px;
+                fill: $blanco;
+            }
+        }
+        
+        &-text {
+            font-size: 24px;
+            font-weight: $font-weight-bold;
+            color: $blanco;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            
+            @media (max-width: $breakpoint-mobile) {
+                font-size: 20px;
+            }
+        }
+    }
+    
+    &__menu {
+        display: flex;
+        align-items: center;
+        gap: $spacing-lg;
+        
+        @media (max-width: $breakpoint-tablet) {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            padding: 80px 24px 24px;
+            background-color: $azul-marino;
+            transition: right $transition-normal;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            
+            &.is-active {
+                right: 0;
+            }
+        }
+    }
+    
+    &__link {
+        color: $blanco;
+        font-size: 15px;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        padding: 8px 0;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: $rojo-corporativo;
+            transition: width $transition-normal;
+        }
+        
+        &:hover,
+        &.is-active {
+            color: $blanco;
+            
+            &::after {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: $breakpoint-tablet) {
+            width: 100%;
+            padding: 16px 0;
+            font-size: 16px;
+            border-bottom: 1px solid rgba($blanco, 0.1);
+            
+            &::after {
+                display: none;
+            }
+        }
+    }
+    
+    &__cta {
+        @media (max-width: $breakpoint-tablet) {
+            margin-top: auto;
+            width: 100%;
+        }
+    }
+    
+    &__toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 8px;
+        cursor: pointer;
+        
+        @media (max-width: $breakpoint-tablet) {
+            display: flex;
+        }
+        
+        span {
+            width: 24px;
+            height: 2px;
+            background-color: $blanco;
+            transition: all $transition-normal;
+        }
+        
+        &.is-active {
+            span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            span:nth-child(2) {
+                opacity: 0;
+            }
+            span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+        }
+    }
+}
+
+// Mega menu (optional)
+.mega-menu {
+    position: static;
+    
+    &__content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-width: $container-max;
+        margin: 0 auto;
+        padding: $spacing-lg;
+        background-color: $blanco;
+        box-shadow: $shadow-xl;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all $transition-normal;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-tablet) {
+            position: relative;
+            box-shadow: none;
+            padding: 0;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            display: none;
+            background-color: transparent;
+        }
+    }
+    
+    &:hover &__content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    &__item {
+        padding: $spacing-sm;
+        border-radius: $border-radius-sm;
+        transition: background-color $transition-fast;
+        
+        &:hover {
+            background-color: $gris-fondo;
+        }
+        
+        a {
+            display: block;
+            color: $azul-marino;
+            font-weight: $font-weight-semibold;
+            
+            &:hover {
+                color: $rojo-corporativo;
+            }
+        }
+    }
+}
+
+// Mobile overlay
+.navbar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transition-normal;
+    z-index: $z-sticky;
+    
+    &.is-active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+

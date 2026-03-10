@@ -1,0 +1,234 @@
+
+/* ASEGURA - Footer */
+
+.footer {
+    background-color: #0A1D3A;
+    color: #FFFFFF;
+    
+    &__main {
+        padding: 80px 0;
+        
+        @media (max-width: 480px) {
+            padding: 60px 0;
+        }
+    }
+    
+    &__grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: 40px;
+        
+        @media (max-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+    
+    &__logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        margin-bottom: 24px;
+    }
+    
+    &__logo-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #D52B1E;
+        border-radius: 4px;
+        
+        svg {
+            width: 28px;
+            height: 28px;
+            fill: #FFFFFF;
+        }
+    }
+    
+    &__logo span {
+        font-size: 24px;
+        font-weight: 800;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    &__description {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0;
+    }
+    
+    &__title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #FFFFFF;
+        margin-bottom: 24px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    &__menu {
+        li {
+            margin-bottom: 12px;
+        }
+        
+        a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                color: #D52B1E;
+                padding-left: 5px;
+            }
+        }
+    }
+    
+    &__contact-list {
+        li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            
+            svg {
+                width: 20px;
+                height: 20px;
+                fill: #D52B1E;
+                flex-shrink: 0;
+            }
+        }
+    }
+    
+    &__bottom {
+        background-color: #081a30;
+        padding: 24px 0;
+    }
+    
+    &__bottom-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        @media (max-width: 480px) {
+            flex-direction: column;
+            gap: 16px;
+            text-align: center;
+        }
+        
+        p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+    
+    &__legal {
+        display: flex;
+        gap: 24px;
+        
+        a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            transition: color 0.2s ease;
+            
+            &:hover {
+                color: #FFFFFF;
+            }
+        }
+    }
+}
+
+// WhatsApp Floating Button
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @media (max-width: 480px) {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    &__link {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #25D366;
+        border-radius: 50%;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s ease;
+        animation: whatsappPulse 2s infinite;
+        
+        @media (max-width: 480px) {
+            width: 55px;
+            height: 55px;
+        }
+        
+        svg {
+            width: 32px;
+            height: 32px;
+            fill: #FFFFFF;
+            
+            @media (max-width: 480px) {
+                width: 28px;
+                height: 28px;
+            }
+        }
+        
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+            background-color: #20BD5A;
+        }
+    }
+    
+    &__tooltip {
+        margin-top: 10px;
+        background-color: #0A1D3A;
+        color: #FFFFFF;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+    }
+    
+    &:hover &__tooltip {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes whatsappPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+

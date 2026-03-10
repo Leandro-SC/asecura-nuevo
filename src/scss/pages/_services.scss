@@ -1,0 +1,154 @@
+/* ASEGURA - Services Page */
+
+// Services Hero
+.services-hero {
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $azul-marino;
+    
+    @media (max-width: $breakpoint-mobile) {
+        height: 350px;
+    }
+    
+    &__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: $blanco;
+        padding: 0 20px;
+        max-width: 800px;
+    }
+    
+    &__title {
+        color: $blanco;
+        margin-bottom: $spacing-sm;
+    }
+    
+    &__subtitle {
+        font-size: 20px;
+        opacity: 0.9;
+    }
+}
+
+// Services List
+.services-list {
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-xl;
+        align-items: center;
+        padding: $spacing-xxl 0;
+        border-bottom: 1px solid rgba($gris-texto, 0.1);
+        
+        @media (max-width: $breakpoint-tablet) {
+            grid-template-columns: 1fr;
+            gap: $spacing-lg;
+            padding: $spacing-xl 0;
+        }
+        
+        &:last-child {
+            border-bottom: none;
+        }
+        
+        &:nth-child(even) {
+            .services-list__content {
+                order: 2;
+                
+                @media (max-width: $breakpoint-tablet) {
+                    order: 1;
+                }
+            }
+            
+            .services-list__image {
+                order: 1;
+                
+                @media (max-width: $breakpoint-tablet) {
+                    order: 2;
+                }
+            }
+        }
+    }
+    
+    &__content {
+        h3 {
+            margin-bottom: $spacing-sm;
+        }
+    }
+    
+    &__description {
+        font-size: 18px;
+        line-height: 1.8;
+        margin-bottom: $spacing-md;
+        color: $gris-texto;
+    }
+    
+    &__features {
+        margin-bottom: $spacing-md;
+        
+        li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 16px;
+            
+            svg {
+                width: 20px;
+                height: 20px;
+                fill: $rojo-corporativo;
+                flex-shrink: 0;
+            }
+        }
+    }
+    
+    &__benefits {
+        li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 16px;
+            font-weight: $font-weight-semibold;
+            color: $azul-marino;
+            
+            svg {
+                width: 20px;
+                height: 20px;
+                fill: $rojo-corporativo;
+                flex-shrink: 0;
+            }
+        }
+    }
+    
+    &__image {
+        border-radius: $border-radius-lg;
+        overflow: hidden;
+        box-shadow: $shadow-xl;
+        
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+// Services Grid (Alternative Layout)
+.services-grid {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-desktop) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
