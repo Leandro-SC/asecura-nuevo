@@ -780,6 +780,18 @@
         min-height: 74px;
         padding: 16px 20px;
     }
+
+    .hero-slider__buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center; /* Vuelve a centrarlos en horizontal */
+        width: auto;
+        gap: 16px;
+    }
+
+    .hero-slider__buttons .btn {
+        width: auto; /* En escritorio los botones se ajustan a su contenido */
+    }
 }
 
 @media (min-width: 1024px) {
@@ -920,4 +932,23 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.hero-slider__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* FIX: Cambiado de 'stretch' a 'flex-start' para no desproporcionar */
+    gap: 16px; /* Un poco más de espacio vertical entre botones */
+    width: 100%;
+}
+
+/* Opcional: Si quieres que en móvil muy pequeño los botones ocupen todo el ancho, pero sin deformarse */
+.hero-slider__buttons .btn {
+    width: 100%;
+    max-width: 320px; /* Limita el crecimiento en móviles grandes/tablets */
+    text-align: center;
+}
+
+.hero-slider__slide.is-active .hero-slider__buttons {
+    animation: heroButtonsUp 1.25s ease-out both;
 }

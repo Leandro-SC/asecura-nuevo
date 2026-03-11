@@ -3,9 +3,9 @@
  * Consultora de seguridad empresarial
  */
 
-document.addEventListener("DOMContentLoaded", function () {
+// Función principal de inicialización
+function initApp() {
     console.log("MAIN JS NUEVO CARGADO");
-
     initNavbar();
     initMobileMenu();
     initHeroSlider();
@@ -14,7 +14,41 @@ document.addEventListener("DOMContentLoaded", function () {
     initFormValidation();
     initSmoothScroll();
     initContactForm();
-});
+    initActiveMenu();
+}
+
+/**
+ * Detectar y pintar el enlace activo en la navegación
+ */
+function initActiveMenu() {
+    // Obtenemos el nombre del archivo actual (ej: "nosotros.html")
+    let currentPath = window.location.pathname.split('/').pop();
+    
+    // Si estamos en la raíz (ej: midominio.com/), el path suele estar vacío
+    if (currentPath === "") {
+        currentPath = "index.html";
+    }
+
+    const navLinks = document.querySelectorAll(".navbar__link");
+
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute("href");
+        
+        // Si el href del enlace coincide con la página actual, le ponemos la clase
+        if (linkHref === currentPath) {
+            link.classList.add("is-active");
+        } else {
+            link.classList.remove("is-active");
+        }
+    });
+}
+
+// FIX: Garantizar ejecución incluso si el DOM ya cargó antes del script
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initApp);
+} else {
+    initApp();
+}
 
 /**
  * Navbar - Scroll effect
@@ -40,13 +74,21 @@ function initMobileMenu() {
 
     function closeMenu() {
         toggle.classList.remove("is-active");
+        toggle.setAttribute("aria-expanded", "false");
         menu.classList.remove("is-active");
         if (overlay) overlay.classList.remove("is-active");
         document.body.classList.remove("menu-open");
     }
 
-    toggle.addEventListener("click", function () {
+    toggle.addEventListener("click", function (e) {
+        // FIX: Evitar comportamientos por defecto que bloqueen el clic
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isActive = toggle.classList.contains("is-active");
+        
         toggle.classList.toggle("is-active");
+        toggle.setAttribute("aria-expanded", !isActive);
         menu.classList.toggle("is-active");
 
         if (overlay) {
@@ -156,11 +198,7 @@ function initScrollAnimations() {
                 }
             });
         },
-        {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.1
-        }
+        { root: null, rootMargin: "0px", threshold: 0.1 }
     );
 
     animatedElements.forEach(function (element) {
@@ -200,11 +238,7 @@ function initCounters() {
                 observer.unobserve(counter);
             });
         },
-        {
-            root: null,
-            rootMargin: "0px",
-            threshold: 0.5
-        }
+        { root: null, rootMargin: "0px", threshold: 0.5 }
     );
 
     counters.forEach(function (counter) {
@@ -215,9 +249,7 @@ function initCounters() {
 /**
  * Form Validation placeholder
  */
-function initFormValidation() {
-    // Intencionalmente vacío si no lo estás usando en otras páginas
-}
+function initFormValidation() {}
 
 /**
  * Smooth Scroll
@@ -255,7 +287,6 @@ function initContactForm() {
     const form = document.getElementById("contactForm");
     if (!form) return;
 
-    // Evita registrar el submit más de una vez
     if (form.dataset.initialized === "true") return;
     form.dataset.initialized = "true";
 
@@ -268,7 +299,6 @@ function initContactForm() {
         event.preventDefault();
         event.stopPropagation();
 
-        // Evita doble click o doble envío mientras está procesando
         if (form.dataset.sending === "true") return;
         form.dataset.sending = "true";
 
@@ -373,14 +403,6 @@ function initContactForm() {
             }
         }
     });
-}
-
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidRuc(ruc) {
-    return /^\d{11}$/.test(ruc);
 }
 
 function isValidEmail(email) {

@@ -1,154 +1,232 @@
-/* ASEGURA - Navbar */
-$z-overlay: 900;
-$z-navbar: 1000;
-$z-toggle: 1100;
-
+/* =========================================
+   ASEGURA - Navbar Principal
+   ========================================= */
 .navbar {
-
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1000;
+    background-color: #0B192C; 
+    transition: all 0.3s ease;
+}
 
-    z-index: $z-navbar;
+.navbar--transparent {
+    background-color: transparent;
+}
 
-    background-color: $azul-marino;
-    transition: all $transition-normal;
+.navbar--scrolled {
+    background-color: #0B192C;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
 
-    &--transparent {
-        background-color: transparent;
+.navbar__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px; /* Aumentado ligeramente para dar espacio al logo más grande */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        @media (max-width: $breakpoint-tablet) {
-            background-color: $azul-marino;
-        }
+/* =========================================
+   DISEÑO DEL LOGO - ASEGURA (GRANDE Y NOTORIO)
+   ========================================= */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Más espacio entre ícono y texto */
+    text-decoration: none;
+    color: #ffffff;
+    z-index: 1100;
+    transition: transform 0.3s ease;
+}
+.navbar__logo:hover {
+    transform: scale(1.04); /* Crece un 4%, sutil y elegante */
+}
+/* Contenedor del ícono - Corregido sin fondo sólido */
+.navbar__logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px; /* Aumentado de 40px a 55px */
+    height: 100px;
+    /* FIX: Removemos background-color para transparencia real */
+    background-color: transparent; /* Obligamos a que sea transparente por si acaso */
+    border-radius: 10px; /* Borde un poco más suave para el tamaño mayor */
+    overflow: hidden;
+    box-shadow: none;
+}
+
+/* Ajuste de la imagen dentro del picture */
+.navbar__logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* Estilo del texto "ASEGURA" - Mayor impacto */
+.navbar__logo-text {
+    font-size: 1.75rem; /* Letra más grande y notoria */
+    font-weight: 900; /* Extra bold */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra en el texto para asegurar legibilidad */
+    transition: color 0.3s ease;
+}
+
+
+/* ========================================= */
+
+/* Texto de navegación */
+.navbar__link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05rem; /* Un poco más legibles */
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0; /* Área de clic más cómoda */
+}
+
+.navbar__link:hover, .navbar__link:focus {
+    color: #4da3ff;
+}
+
+/* ESTILO DEL ENLACE ACTIVO */
+.navbar__link.is-active {
+    color: #4da3ff;
+    font-weight: 700;
+}
+
+/* Línea debajo del enlace activo */
+.navbar__link.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #4da3ff;
+    border-radius: 2px;
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Mejor espaciado entre links */
+}
+
+/* =========================================
+   MOBILE ESTILOS Y HAMBURGUESA
+   ========================================= */
+@media (max-width: 768px) {
+    .navbar__container {
+        height: 80px; /* Vuelve a un tamaño estándar en móvil */
     }
 
-    &--scrolled {
-        background-color: $azul-marino;
-        box-shadow: $shadow-md;
+    .navbar__logo-icon {
+        width: 150px; /* Ajuste proporcional para móvil */
+        height: 100px;
     }
 
-    &__container {
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        height: 80px;
-
-        max-width: $container-max;
-        margin: 0 auto;
-
-        padding: 0 $container-padding;
+    .navbar__logo-text {
+        font-size: 1.4rem;
     }
 
-    &__menu {
-
-        display: flex;
-        align-items: center;
-        gap: $spacing-lg;
-
-        @media (max-width: $breakpoint-tablet) {
-
-            position: fixed;
-
-            top: 0;
-            right: -100%;
-
-            width: 280px;
-            height: 100vh;
-
-            flex-direction: column;
-            align-items: flex-start;
-
-            padding: 80px 24px 24px;
-
-            background-color: $azul-marino;
-
-            transition: right $transition-normal;
-
-            z-index: $z-navbar;
-
-            &.is-active {
-                right: 0;
-            }
-        }
+    .navbar--transparent {
+        background-color: #0B192C;
     }
 
-    &__toggle {
-
-        display: none;
+    .navbar__menu {
+        position: fixed;
+        top: 0;
+        right: -100%; 
+        width: 280px;
+        height: 100vh;
         flex-direction: column;
-
-        gap: 5px;
-
-        padding: 8px;
-        cursor: pointer;
-
-        position: relative;
-        z-index: $z-toggle;
-
-        @media (max-width: $breakpoint-tablet) {
-            display: flex;
-        }
-
-        span {
-            width: 24px;
-            height: 2px;
-            background-color: $blanco;
-            transition: all $transition-normal;
-        }
-
-        &.is-active {
-
-            span:nth-child(1) {
-                transform: rotate(45deg) translate(5px,5px);
-            }
-
-            span:nth-child(2) {
-                opacity: 0;
-            }
-
-            span:nth-child(3) {
-                transform: rotate(-45deg) translate(5px,-5px);
-            }
-        }
+        align-items: flex-start;
+        padding: 100px 30px 30px; /* Más padding superior para no chocar con el header */
+        background-color: #0B192C;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5); /* Sombra para diferenciar el menú deslizable */
+        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Animación más fluida */
+        z-index: 1000;
+        gap: 20px;
     }
+
+    .navbar__menu.is-active {
+        right: 0; 
+    }
+    
+    .navbar__link {
+        font-size: 1.2rem; /* Links más grandes en móvil para mejor tap */
+        width: 100%;
+    }
+}
+
+.navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px; /* Más espacio entre barras */
+    padding: 10px; /* Área de tap más grande para dedos */
+    cursor: pointer;
+    position: relative;
+    z-index: 1100;
+    background: transparent;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .navbar__toggle {
+        display: flex;
+    }
+}
+
+.navbar__toggle span {
+    width: 28px; /* Barras un poco más largas */
+    height: 3px; /* Barras más gruesas */
+    background-color: #ffffff;
+    border-radius: 3px; /* Barras redondeadas */
+    transition: all 0.3s ease;
+}
+
+/* Animación de la hamburguesa a X */
+.navbar__toggle.is-active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+.navbar__toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.navbar__toggle.is-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Overlay */
-
 .navbar-overlay {
-
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
-    background-color: rgba(0,0,0,0.5);
-
+    background-color: rgba(0,0,0,0.6); /* Un poco más oscuro */
+    backdrop-filter: blur(3px); /* Efecto moderno de desenfoque al fondo */
     opacity: 0;
     visibility: hidden;
-
-    transition: all $transition-normal;
-
-    z-index: $z-overlay;
-
+    transition: all 0.3s ease;
+    z-index: 900;
     pointer-events: none;
-
-    &.is-active {
-
-        opacity: 1;
-        visibility: visible;
-
-        pointer-events: auto;
-    }
 }
 
-/* Bloquea scroll */
+.navbar-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
 
 body.menu-open {
     overflow: hidden;

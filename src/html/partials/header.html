@@ -1,13 +1,13 @@
-<!-- Header Partial -->
 <header class="navbar navbar--transparent" role="banner">
     <div class="navbar__container">
-        <a href="index.html" class="navbar__logo" aria-label="ASEGURA - Inicio">
+<a href="index.html" class="navbar__logo" aria-label="ASEGURA - Inicio">
             <div class="navbar__logo-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                </svg>
+                <picture>
+                    <source srcset="img/logo_asegura_2.avif" type="image/avif">
+                    <source srcset="img/logo_asegura_2.webp" type="image/webp">
+                    <img src="img/logo_asegura_2.jpg" alt="Ícono de ASEGURA" width="100" height="100">
+                </picture>
             </div>
-            <span class="navbar__logo-text">ASEGURA</span>
         </a>
         
         <nav class="navbar__menu" role="navigation" aria-label="Menú principal">
@@ -21,7 +21,7 @@
             </div>
         </nav>
         
-        <button class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+        <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
@@ -29,6 +29,4 @@
     </div>
 </header>
 
-<!-- Mobile Overlay -->
 <div class="navbar-overlay"></div>
-
