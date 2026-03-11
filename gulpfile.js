@@ -10,6 +10,8 @@ const through2 = require('through2');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
+const htmlmin = require('gulp-htmlmin');
+const fileinclude = require('gulp-file-include');
 
 const config = {
     src: 'src',
@@ -43,7 +45,21 @@ function scripts() {
 }
 
 function html() {
-    return gulp.src('src/html/**/*.html')
+    return gulp.src([
+            'src/html/**/*.html',
+            '!src/html/partials/**/*.html'
+        ])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true,
+            removeEmptyAttributes: true,
+            minifyCSS: true,
+            minifyJS: true
+        }))
         .pipe(gulp.dest('build'))
         .pipe(browserSync.stream());
 }

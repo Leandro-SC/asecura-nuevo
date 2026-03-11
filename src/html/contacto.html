@@ -47,36 +47,8 @@
     </script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="navbar navbar--scrolled" role="banner">
-        <div class="navbar__container">
-            <a href="index.html" class="navbar__logo" aria-label="ASEGURA - Inicio">
-                <div class="navbar__logo-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                    </svg>
-                </div>
-                <span class="navbar__logo-text">ASEGURA</span>
-            </a>
-            
-            <nav class="navbar__menu" role="navigation" aria-label="Menú principal">
-                <a href="index.html" class="navbar__link">Inicio</a>
-                <a href="nosotros.html" class="navbar__link">Nosotros</a>
-                <a href="servicios.html" class="navbar__link">Servicios</a>
-                <a href="sst.html" class="navbar__link">SST</a>
-                <a href="contacto.html" class="navbar__link is-active">Contacto</a>
-                <div class="navbar__cta">
-                    <a href="contacto.html" class="btn btn--primary btn--small">Diagnóstico Gratis</a>
-                </div>
-            </nav>
-            
-            <button class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
+     <!-- Header -->
+     @@include('./partials/header.html')
     
     <div class="navbar-overlay"></div>
 
@@ -92,90 +64,159 @@
         </div>
     </section>
 
-    <!-- Contact Form -->
-    <section class="section contact-form">
-        <div class="container">
-            <div class="contact-form__content">
-                <div class="contact-form__info">
-                    <h3>Envíenos un mensaje</h3>
-                    <p>Complete el formulario y nuestro equipo de especialistas se contactará con usted dentro de las 24 horas hábiles.</p>
-                    <p>También puede llamarnos directamente o escribirnos por correo electrónico.</p>
-                    
-                    <div class="info-card" style="margin-top: 30px;">
-                        <div class="info-card__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                        <div class="info-card__content">
-                            <h4 class="info-card__title">Primera consulta sin costo</h4>
-                            <p class="info-card__text">Ofrecemos una evaluación inicial gratuita para entender sus necesidades.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form__form">
-                    <form id="contactForm">
-                        <div class="form-group form-group--hidden" aria-hidden="true">
-    <label for="website">Sitio web</label>
-    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-</div>
-                        <div class="form-group">
-                            <label for="nombre">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="empresa">Empresa / RUC *</label>
-                            <input type="text" id="empresa" name="empresa" placeholder="Nombre de su empresa o RUC" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="celular">Celular *</label>
-                            <input type="tel" id="celular" name="celular" placeholder="+51 999 999 999" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico *</label>
-                            <input type="email" id="email" name="email" placeholder="correo@empresa.com" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="servicio">Servicio de Interés *</label>
-                            <select id="servicio" name="servicio" required>
-                                <option value="">Seleccione un servicio</option>
-                                <option value="filtro-confianza">Filtro de Confianza</option>
-                                <option value="seguridad-fisica">Seguridad Física</option>
-                                <option value="sst">Sistema SST</option>
-                                <option value="auditoria">Auditoría Interna</option>
-                                <option value="consultoria">Consultoría Técnica</option>
-                                <option value="formacion">Formación</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" placeholder="Describa brevemente su requerimiento..."></textarea>
-                        </div>
-                        
-                       <button type="submit" class="btn btn--primary contact-form__submit" id="contactSubmitBtn">
-    Enviar Mensaje
-</button>
-                    </form>
-                    
-                    <div class="form-success" id="formSuccess">
+<!-- Contact Form -->
+<section class="section contact-form">
+    <div class="container">
+        <div class="contact-form__content">
+
+            <div class="contact-form__info">
+                <h3>Envíenos un mensaje</h3>
+                <p>
+                    Complete el formulario y nuestro equipo de especialistas se contactará con usted dentro de las 24 horas hábiles.
+                </p>
+                <p>
+                    También puede llamarnos directamente o escribirnos por correo electrónico.
+                </p>
+
+                <div class="info-card contact-form__highlight">
+                    <div class="info-card__icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
-                        <h4>¡Mensaje Enviado!</h4>
-                        <p>Gracias por contactarnos. Nuestro equipo se comunicará con usted dentro de las 24 horas hábiles.</p>
+                    </div>
+                    <div class="info-card__content">
+                        <h4 class="info-card__title">Primera consulta sin costo</h4>
+                        <p class="info-card__text">
+                            Ofrecemos una evaluación inicial gratuita para entender sus necesidades.
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
+            <div class="contact-form__form">
+                <form id="contactForm" class="contact-form__element" novalidate>
+                    
+                    <!-- Honeypot -->
+                    <div class="form-group form-group--hidden" aria-hidden="true">
+                        <label for="website">Sitio web</label>
+                        <input
+                            type="text"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo <span aria-hidden="true">*</span></label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Ingrese su nombre"
+                            autocomplete="name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="empresa">Empresa <span aria-hidden="true">*</span></label>
+                        <input
+                            type="text"
+                            id="empresa"
+                            name="empresa"
+                            placeholder="Nombre de su empresa"
+                            autocomplete="organization"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ruc">RUC</label>
+                        <input
+                            type="text"
+                            id="ruc"
+                            name="ruc"
+                            placeholder="Ingrese su RUC"
+                            inputmode="numeric"
+                            maxlength="11"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="celular">Celular <span aria-hidden="true">*</span></label>
+                        <input
+                            type="tel"
+                            id="celular"
+                            name="celular"
+                            placeholder="+51 999 999 999"
+                            autocomplete="tel"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="correo@empresa.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servicio">Servicio de interés <span aria-hidden="true">*</span></label>
+                        <select id="servicio" name="servicio" required>
+                            <option value="">Seleccione un servicio</option>
+                            <option value="filtro-confianza">Filtro de Confianza</option>
+                            <option value="seguridad-fisica">Seguridad Física</option>
+                            <option value="sst">Sistema SST</option>
+                            <option value="auditoria">Auditoría Interna</option>
+                            <option value="consultoria">Consultoría Técnica</option>
+                            <option value="formacion">Formación</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea
+                            id="mensaje"
+                            name="mensaje"
+                            placeholder="Describa brevemente su requerimiento..."
+                            rows="5"
+                        ></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn--primary contact-form__submit"
+                        id="contactSubmitBtn"
+                    >
+                        Enviar mensaje
+                    </button>
+                </form>
+
+                <!-- Opcional: puedes eliminar este bloque si usarás solo SweetAlert -->
+                <div class="form-success" id="formSuccess" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <h4>¡Mensaje enviado!</h4>
+                    <p>
+                        Gracias por contactarnos. Nuestro equipo se comunicará con usted dentro de las 24 horas hábiles.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 <!-- Map Section -->
 <section class="section map-section">
     <div class="container">
@@ -231,88 +272,9 @@
 
     </div>
 </section>
-
-    <!-- Coverage Section -->
  
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="footer__main">
-            <div class="container">
-                <div class="footer__grid">
-                    <div class="footer__company">
-                        <a href="index.html" class="footer__logo">
-                            <div class="footer__logo-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-                                </svg>
-                            </div>
-                            <span>ASEGURA</span>
-                        </a>
-                        <p class="footer__description">
-                            Consultora especializada en seguridad empresarial, auditoría, prevención de riesgos y cumplimiento normativo en Perú.
-                        </p>
-                    </div>
-                    
-                    <div class="footer__links">
-                        <h4 class="footer__title">Enlaces Rápidos</h4>
-                        <ul class="footer__menu">
-                            <li><a href="index.html">Inicio</a></li>
-                            <li><a href="nosotros.html">Nosotros</a></li>
-                            <li><a href="servicios.html">Servicios</a></li>
-                            <li><a href="sst.html">SST</a></li>
-                            <li><a href="contacto.html">Contacto</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer__services">
-                        <h4 class="footer__title">Servicios</h4>
-                        <ul class="footer__menu">
-                            <li><a href="servicios.html">Filtro de Confianza</a></li>
-                            <li><a href="servicios.html">Seguridad Física</a></li>
-                            <li><a href="sst.html">Sistema SST</a></li>
-                            <li><a href="servicios.html">Auditoría Interna</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer__contact">
-                        <h4 class="footer__title">Contacto</h4>
-                        <ul class="footer__contact-list">
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                                </svg>
-                                <span>Lima, Perú</span>
-                            </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                                </svg>
-                                <span>+51 999 999 999</span>
-                            </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                                </svg>
-                                <span>contacto@asegura.pe</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer__bottom">
-            <div class="container">
-                <div class="footer__bottom-content">
-                    <p>&copy; 2026 ASEGURA. Todos los derechos reservados.</p>
-                    <div class="footer__legal">
-                        <a href="#">Política de Privacidad</a>
-                        <a href="#">Términos y Condiciones</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <!-- Footer -->
+    @@include('./partials/footer.html')
 
     <!-- Scripts -->
     <script src="js/main.js"></script>

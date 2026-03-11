@@ -10,11 +10,12 @@
     justify-content: center;
     overflow: hidden;
     text-align: center;
-    min-height: 320px;
-    padding: 110px 20px 72px;
+    min-height: 100svh;
+    padding: 112px 20px 76px;
     background:
         linear-gradient(135deg, rgba($azul-marino, 0.96), rgba($azul-secundario, 0.9)),
         radial-gradient(circle at 20% 25%, rgba($rojo-corporativo, 0.16), transparent 28%);
+    isolation: isolate;
 
     @media (min-width: $breakpoint-mobile) {
         min-height: 360px;
@@ -46,14 +47,23 @@
     &::after {
         content: '';
         position: absolute;
-        width: 420px;
-        height: 420px;
-        right: -100px;
-        bottom: -120px;
-        background: radial-gradient(circle, rgba($rojo-corporativo, 0.22), transparent 65%);
-        filter: blur(22px);
+        width: 260px;
+        height: 260px;
+        right: -70px;
+        bottom: -70px;
+        background: radial-gradient(circle, rgba($rojo-corporativo, 0.28), transparent 68%);
+        filter: blur(18px);
         pointer-events: none;
-        animation: contactHeroFloat 12s ease-in-out infinite alternate;
+        animation: contactHeroFloatMobile 8s ease-in-out infinite alternate;
+
+        @media (min-width: $breakpoint-tablet) {
+            width: 420px;
+            height: 420px;
+            right: -100px;
+            bottom: -120px;
+            filter: blur(22px);
+            animation: contactHeroFloatDesktop 12s ease-in-out infinite alternate;
+        }
     }
 
     .hero__background {
@@ -68,8 +78,14 @@
             object-fit: cover;
             object-position: center center;
             display: block;
-            transform: scale(1.04);
-            animation: contactHeroZoom 16s ease-in-out infinite alternate;
+            transform: scale(1.1);
+            animation: contactHeroZoomMobile 9s ease-in-out infinite alternate;
+            will-change: transform;
+
+            @media (min-width: $breakpoint-tablet) {
+                transform: scale(1.04);
+                animation: contactHeroZoomDesktop 16s ease-in-out infinite alternate;
+            }
         }
     }
 
@@ -82,16 +98,16 @@
     .hero__overlay--dark {
         background:
             linear-gradient(
+                180deg,
+                rgba($azul-marino, 0.2) 0%,
+                rgba($azul-marino, 0.44) 46%,
+                rgba($azul-marino, 0.76) 100%
+            ),
+            linear-gradient(
                 90deg,
                 rgba($azul-marino, 0.78) 0%,
                 rgba($azul-marino, 0.46) 40%,
                 rgba($azul-marino, 0.22) 100%
-            ),
-            linear-gradient(
-                180deg,
-                rgba($azul-marino, 0.16) 0%,
-                rgba($azul-marino, 0.38) 68%,
-                rgba($azul-marino, 0.62) 100%
             );
     }
 
@@ -101,26 +117,26 @@
         color: $blanco;
         max-width: 860px;
         margin: 0 auto;
-        animation: contactHeroFadeUp 1s ease-out both;
+        animation: contactHeroFadeUp 0.9s ease-out both;
     }
 
     &__title {
-        color: $blanco;
         margin: 0 0 $spacing-sm;
+        color: $blanco;
         font-size: clamp(2.1rem, 6vw, 4.4rem);
         line-height: 1.03;
         letter-spacing: -0.03em;
         text-wrap: balance;
-        animation: contactHeroTitleUp 1.1s ease-out both;
+        animation: contactHeroTitleUp 1s ease-out both;
     }
 
     &__subtitle {
-        font-size: clamp(1rem, 2vw, 1.2rem);
-        opacity: 0.92;
-        line-height: 1.7;
         max-width: 680px;
         margin: 0 auto;
-        animation: contactHeroSubtitleUp 1.25s ease-out both;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        line-height: 1.7;
+        color: rgba($blanco, 0.92);
+        animation: contactHeroSubtitleUp 1.15s ease-out both;
     }
 }
 
@@ -180,10 +196,10 @@
         }
 
         p {
-            font-size: 16px;
-            color: $gris-texto;
             margin: 0;
+            font-size: 16px;
             line-height: 1.6;
+            color: $gris-texto;
         }
 
         a {
@@ -203,8 +219,7 @@
 // Contact Form Section
 // =========================
 .contact-form {
-    background:
-        linear-gradient(180deg, $gris-fondo 0%, lighten($gris-fondo, 2%) 100%);
+    background: linear-gradient(180deg, $gris-fondo 0%, lighten($gris-fondo, 2%) 100%);
 
     &__content {
         display: grid;
@@ -228,9 +243,9 @@
         }
 
         p {
+            margin-bottom: $spacing-md;
             font-size: 18px;
             line-height: 1.8;
-            margin-bottom: $spacing-md;
             color: $gris-texto;
         }
 
@@ -255,6 +270,10 @@
             padding: calc(#{$spacing-lg} + 8px);
         }
     }
+
+    &__submit {
+        width: 100%;
+    }
 }
 
 // =========================
@@ -265,10 +284,10 @@
 
     label {
         display: block;
+        margin-bottom: 8px;
         font-size: 13px;
         font-weight: $font-weight-semibold;
         color: $azul-marino;
-        margin-bottom: 8px;
         text-transform: uppercase;
         letter-spacing: 0.08em;
     }
@@ -308,117 +327,12 @@
         background-position: right 16px center;
         padding-right: 40px;
     }
-}
 
-// =========================
-// Map Section
-// =========================
-.map-section {
-    &__content {
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 18px 40px rgba(16, 24, 40, 0.12);
-        border: 1px solid rgba($azul-marino, 0.06);
-
-        iframe {
-            width: 100%;
-            height: 460px;
-            border: none;
-            display: block;
-
-            @media (max-width: $breakpoint-mobile) {
-                height: 340px;
-            }
-        }
-    }
-}
-
-// =========================
-// Success Message
-// =========================
-.form-success {
-    display: none;
-    text-align: center;
-    padding: $spacing-lg;
-
-    &.is-visible {
-        display: block;
-    }
-
-    svg {
-        width: 64px;
-        height: 64px;
-        fill: $rojo-corporativo;
-        margin-bottom: $spacing-md;
-    }
-
-    h4 {
-        font-size: $font-size-h3;
-        margin-bottom: $spacing-sm;
-        color: $azul-marino;
-    }
-
-    p {
-        font-size: 16px;
-        color: $gris-texto;
-        line-height: 1.7;
-    }
-}
-
-// =========================
-// Keyframes
-// =========================
-@keyframes contactHeroFloat {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(-20px, 15px) scale(1.05);
-    }
-    100% {
-        transform: translate(10px, -10px) scale(1);
-    }
-}
-
-@keyframes contactHeroZoom {
-    0% {
-        transform: scale(1.04) translate3d(0, 0, 0);
-    }
-    100% {
-        transform: scale(1.1) translate3d(1%, -1%, 0);
-    }
-}
-
-@keyframes contactHeroFadeUp {
-    0% {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes contactHeroTitleUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes contactHeroSubtitleUp {
-    0% {
-        opacity: 0;
-        transform: translateY(22px);
-    }
-    100% {
-        opacity: 0.92;
-        transform: translateY(0);
+    &--hidden {
+        position: absolute !important;
+        left: -9999px !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 }
 
@@ -430,11 +344,11 @@
 
     &__wrapper {
         position: relative;
-        margin-top: 40px;
         display: grid;
         grid-template-columns: 1fr;
         gap: $spacing-lg;
         align-items: start;
+        margin-top: 40px;
 
         @media (min-width: $breakpoint-tablet) {
             grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
@@ -445,9 +359,9 @@
     &__content {
         border-radius: 24px;
         overflow: hidden;
+        background: $blanco;
         box-shadow: 0 18px 40px rgba(16, 24, 40, 0.12);
         border: 1px solid rgba($azul-marino, 0.06);
-        background: $blanco;
 
         iframe {
             width: 100%;
@@ -494,9 +408,9 @@
 
     &__card-text {
         margin: 0 0 $spacing-md;
-        color: $gris-texto;
-        line-height: 1.75;
         font-size: 16px;
+        line-height: 1.75;
+        color: $gris-texto;
     }
 
     &__details {
@@ -536,12 +450,114 @@
     }
 }
 
-.form-group--hidden {
-    position: absolute !important;
-    left: -9999px !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+// =========================
+// Success Message
+// =========================
+.form-success {
+    display: none;
+    text-align: center;
+    padding: $spacing-lg;
+
+    &.is-visible {
+        display: block;
+    }
+
+    svg {
+        width: 64px;
+        height: 64px;
+        fill: $rojo-corporativo;
+        margin-bottom: $spacing-md;
+    }
+
+    h4 {
+        margin-bottom: $spacing-sm;
+        font-size: $font-size-h3;
+        color: $azul-marino;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: $gris-texto;
+    }
 }
-.contact-form__submit {
-    width: 100%;
+
+// =========================
+// Keyframes
+// =========================
+@keyframes contactHeroFloatMobile {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.84;
+    }
+    100% {
+        transform: translate3d(-16px, -12px, 0) scale(1.1);
+        opacity: 1;
+    }
+}
+
+@keyframes contactHeroFloatDesktop {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-20px, 15px) scale(1.05);
+    }
+    100% {
+        transform: translate(10px, -10px) scale(1);
+    }
+}
+
+@keyframes contactHeroZoomMobile {
+    0% {
+        transform: scale(1.1) translate3d(0, 0, 0);
+    }
+    50% {
+        transform: scale(1.16) translate3d(-2%, 1.4%, 0);
+    }
+    100% {
+        transform: scale(1.22) translate3d(1.6%, -1.2%, 0);
+    }
+}
+
+@keyframes contactHeroZoomDesktop {
+    0% {
+        transform: scale(1.04) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: scale(1.1) translate3d(1%, -1%, 0);
+    }
+}
+
+@keyframes contactHeroFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contactHeroTitleUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contactHeroSubtitleUp {
+    0% {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    100% {
+        opacity: 0.92;
+        transform: translateY(0);
+    }
 }
